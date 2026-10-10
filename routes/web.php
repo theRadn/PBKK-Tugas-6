@@ -13,3 +13,5 @@ Route::post('/agent/idea', [PageController::class, 'store'])->name('agent.idea.s
 Route::fallback(function () {
     return view('errors.404');
 });
+
+require __DIR__.'/auth.php';

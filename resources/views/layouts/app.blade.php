@@ -27,7 +27,7 @@
             }
         })();
     </script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
