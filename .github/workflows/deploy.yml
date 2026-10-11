@@ -19,6 +19,6 @@ jobs:
       - name: Run Deployment Script on VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
-            cd /var/www/PBKK-Tugas-1
+            cd /var/www/PBKK-Tugas-6
             ./deploy.sh
           EOF
