@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -26,16 +28,26 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login first.');
+        }
+
         $validated = $request->validate([
-            'name'    => 'required|string|max:255',
-            'nrp'     => 'required|string|max:50',
-            'fp-idea' => 'required|string|max:1000',
+            'judul'      => 'required|string|max:255',
+            'deskripsi'  => 'required|string|max:1000',
+            'tema_agent' => 'required|string|max:255',
+            'api_key_secure' => 'nullable|string',
         ]);
 
-        return redirect()->back()->with('success_data', [
-            'name' => $validated['name'],
-            'nrp'  => $validated['nrp'],
-            'idea' => $validated['fp-idea'],
+        $project = Auth::user()->projects()->create([
+            'judul'      => $validated['judul'],
+            'deskripsi'  => $validated['deskripsi'],
+            'tema_agent' => $validated['tema_agent'],
+            'api_key_secure' => $request['api_key_secure'] ?? null,
         ]);
+
+        return redirect()->back()->with('success_data',
+            "Project {$project->judul} saved successfully!"
+        );
     }
 }
