@@ -15,6 +15,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
+Route::get('/login', fn () => view('auth.login'))
+    ->middleware('guest')
+    ->name('login.form');
+
+Route::get('/register', fn () => view('auth.register'))
+    ->middleware('guest')
+    ->name('register.form');
+
 Route::fallback(function () {
     return view('errors.404');
 });
