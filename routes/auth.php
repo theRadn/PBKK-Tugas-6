@@ -8,9 +8,17 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/register', fn () => view('Auth.register'))
+    ->middleware('guest')
+    ->name('register.form');
+
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
     ->name('register');
+
+Route::get('/login', fn () => view('Auth.login'))
+    ->middleware('guest')
+    ->name('login.form');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
