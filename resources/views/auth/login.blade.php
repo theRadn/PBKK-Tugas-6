@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content') 
+@section('content')
     <section class="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
         <div class="w-full max-w-md">
             {{-- Header --}}
